@@ -16,8 +16,14 @@
                         {{ session('status') }}
                     </div>
                     @endif
-
                     {{ __('You are logged in!') }}
+
+                    <div>
+                        Benvenuto {{ $user->name }}
+                    </div>
+                    <div>
+                        Ti sei loggato con la mail :{{ $user->email }}
+                    </div>
                 </div>
             </div>
         </div>
