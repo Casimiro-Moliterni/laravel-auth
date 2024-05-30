@@ -13,4 +13,7 @@
     <div>
         <strong>Summary</strong>{{ $project->summary }}
     </div>
+    <div>
+        <a class="my_arrow_show" href="{{ route('admin.projects.index') }}"><i class="fa-solid fa-arrow-turn-up"></i></a>
+    </div>
 @endsection
