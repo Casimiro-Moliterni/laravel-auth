@@ -92,13 +92,13 @@ class ProjectController extends Controller
     public function update(Request $request, Project $project)
     {
         //
-        $request->validate(
+        $validated = $request->validate(
             [
               'name'=>[
                 'required',
                 'min:5',
                 'max:255',
-                Rule::unique('project')->ignore($project)
+                Rule::unique('projects')->ignore($project)
               ],
               'summary'=>'nullable|min:10'
             ]
