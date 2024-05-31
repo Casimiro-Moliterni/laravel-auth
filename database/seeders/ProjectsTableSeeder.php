@@ -20,8 +20,8 @@ class ProjectsTableSeeder extends Seeder
         for($i=0; $i < 10 ; $i ++){
            $newProject= new Project();
 
-           $newProject->name=$faker->sentence(3);
-           $newProject->client_name=$faker->firstName();
+           $newProject->name=$faker->domainName();
+           $newProject->client_name=$faker->company();
            $newProject->slug=Str::slug($newProject->name, '-');
            $newProject->summary=$faker->text(500);
            $newProject->save();

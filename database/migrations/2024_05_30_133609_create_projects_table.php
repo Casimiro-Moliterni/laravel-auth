@@ -17,8 +17,8 @@ return new class extends Migration
             $table->id();
             $table->string('name')->unique();
             $table->string('slug');
-            $table->string('client_name');
-            $table->text('summary');
+            $table->string('client_name')->nullable();
+            $table->text('summary')->nullable();
             $table->timestamps();
         });
     }
