@@ -58,13 +58,18 @@
                                     <i class="fa-solid fa-tachometer-alt fa-lg fa-fw"></i> Projects
                                 </a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link  {{  Route::currentRouteName() == 'admin.projects.create' ? 'bg-secondary' : '' }}" href="{{ route('admin.projects.create') }}">
+                                    <i class="fa-solid fa-tachometer-alt fa-lg fa-fw"></i> Crea Progetti
+                                </a>
+                            </li>
                         </ul>
 
 
                     </div>
                 </nav>
 
-                <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 pt-3">
+                <main class="col-md-9  col-lg-10 px-md-4 px-lg-5 pt-3">
                     @yield('content')
                 </main>
             </div>

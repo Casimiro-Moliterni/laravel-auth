@@ -8,11 +8,11 @@
         <strong>Created at :</strong>{{ $project->created_at }}
     </div>
     <div class="mb-4  border-bottom">
-        <strong>Update at :</strong>{{ $project->update_at }}
+        <strong>Update at :</strong>{{ $project->updated_at }}
     </div>
-    <div>
-        <strong>Summary</strong>{{ $project->summary }}
-    </div>
+    @if ($project->summary)
+        <p class="mt-5"><strong>Content:</strong>{{ $project->summary }}</p>
+    @endif
     <div>
         <a class="my_arrow_show" href="{{ route('admin.projects.index') }}"><i class="fa-solid fa-arrow-turn-up"></i></a>
     </div>
