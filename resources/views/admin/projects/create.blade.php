@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 @section('content')
     <h2>Crea un Nuovo Progetto !</h2>
-    
+
     @if ($errors->any())
         <div class="alert alert-danger">
             <ul>
@@ -16,11 +16,16 @@
             @csrf
             <div class="mb-3">
                 <label for="name" class="form-label">Nome Progetto</label>
-                <input type="text" class="form-control" id="name" placeholder="Es. Comic.com" name="name" value="{{ old('name') }}">
+                <input type="text" class="form-control" id="name" placeholder="Es. Comic.com" name="name"
+                    value="{{ old('name') }}">
+            </div>
+            <div class="mb-3">
+                <label for="thumb" class="form-label">Immagine</label>
+                <input class="form-control" type="file" id="thumb" name="thumb">
             </div>
             <div class="mb-3">
                 <label for="summary" class="form-label">Testo</label>
-                <textarea class="form-control" id="summary" rows="3" name="summary">{{ old('summary') }}"</textarea>
+                <textarea class="form-control" id="summary" rows="3" name="summary">{{ old('summary') }}</textarea>
             </div>
             <div>
                 <button type="submit" class="btn btn-primary">Salva</button>

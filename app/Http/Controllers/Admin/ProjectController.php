@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Project;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Storage;
 class ProjectController extends Controller
 {
     /**
@@ -46,16 +47,21 @@ class ProjectController extends Controller
         $request->validate(
             [
               'name'=>'required|min:5|max:255|unique:projects,name',
-              'summary'=>'nullable|min:10'
+              'summary'=>'nullable|min:10',
+              'thumb' => 'nullable|image|max:256',
+              'client_name'=>'nullable|min:5|max:255'
             ]
             );
         $formData=$request->all();
-
+        if($request->hasFile('thumb')){
+                $img_path = Storage::disk('public')->put('projects_thumb',$formData['thumb']);
+                $formData['thumb']=$img_path;
+        }
         $newProject = new Project();
         $newProject->fill($formData);
         $newProject->slug= Str::slug($newProject->name, '-');
         $newProject->save();
-        return redirect()->route('admin.projects.show',['project'=>$newProject->id]);
+        return redirect()->route('admin.projects.show',['project'=>$newProject->slug]);
     }
 
     /**
@@ -100,10 +106,19 @@ class ProjectController extends Controller
                 'max:255',
                 Rule::unique('projects')->ignore($project)
               ],
-              'summary'=>'nullable|min:10'
+              'summary'=>'nullable|min:10',
+              'thumb' => 'nullable|image|max:256',
+              'client_name'=>'nullable|min:5|max:255'
             ]
             );
         $formData=$request->all();
+        if($request->hasFile('thumb')){
+            if($project->thumb){
+                Storage::delete($project->thumb);
+            }
+            $img_path = Storage::disk('public')->put('projects_thumb',$formData['thumb']);
+            $formData['thumb']=$img_path;
+          }
         $project->slug= Str::slug($formData['name'], '-');
         $project->update($formData);
         return redirect()->route('admin.projects.show',['project'=>$project->slug]);
