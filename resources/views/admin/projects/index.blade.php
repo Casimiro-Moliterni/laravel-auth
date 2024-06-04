@@ -22,14 +22,14 @@
                         <div class="d-flex align-items-center justify-content-center gap-3">
 
                             <a class="btn btn-primary"
-                                href="{{ route('admin.projects.show', ['project' => $project->id]) }}">view</a>
+                                href="{{ route('admin.projects.show', ['project' => $project->slug]) }}">view</a>
 
                             <a class="ms_update_icon btn btn-success"
-                                href="{{ route('admin.projects.edit', ['project' => $project->id]) }}">
+                                href="{{ route('admin.projects.edit', ['project' => $project->slug]) }}">
                                 <i class="fa-solid fa-pen"></i>
                             </a>
                             <div>
-                                <form action="{{ route('admin.projects.destroy', ['project' => $project->id]) }}"
+                                <form action="{{ route('admin.projects.destroy', ['project' => $project->slug]) }}"
                                     method="POST">
                                     @csrf
                                     @method('DELETE')

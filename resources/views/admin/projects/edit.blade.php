@@ -11,13 +11,17 @@
         </div>
     @endif
     <div>
-        <form action="{{ route('admin.projects.update', ['project' => $project->id]) }}" method="POST">
+        <form action="{{ route('admin.projects.update', ['project' => $project->slug]) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
             <div class="mb-3">
                 <label for="name" class="form-label">Nome Progetto</label>
                 <input type="text" class="form-control" id="name" placeholder="Es. Comic.com" name="name"
                     value="{{ old('name',$project->name) }}">
+            </div>
+            <div class="mb-3">
+                <label for="cover_image" class="form-label">Immagine</label>
+                <input class="form-control" type="file" id="cover_image" name="cover_image">
             </div>
             <div class="mb-3">
                 <label for="summary" class="form-label">Testo</label>
